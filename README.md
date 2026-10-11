@@ -7,19 +7,11 @@
 
 ## Integrantes
 
-| Nome | GitHub | Contribuição |
+| Nome | GitHub | Matrícula |
 |------|--------|--------------|
-| (nome 1) | @usuario1 | (ex.: cadastro de times e validações) |
-| (nome 2) | @usuario2 | (ex.: registro de partidas e atualização de estatísticas) |
-| (nome 3) | @usuario3 | (ex.: ordenação, exibição da tabela e README) |
+| Orlando de Araújo Gonçalves | @oLanxs | 04161229
 
-> Apague as linhas que não forem usadas (trabalho individual: uma linha só).
 
-## Vídeo de demonstração
-
-(Cole aqui o link do vídeo ou o arquivo enviado ao repositório)
-
----
 
 ## 1. Descrição do problema
 
@@ -71,8 +63,4 @@ comparando os times pela função `criterio()`. A cópia preserva a ordem origin
 
 ## 4. Reflexão sobre o desenvolvimento
 
-(Escreva com suas palavras. Sugestão de base:)
 
-- **Decisões:** usei listas de dicionários para guardar os dados de cada time e separei o código em funções pequenas, cada uma com uma tarefa. Implementei o Bubble Sort manualmente em vez de `sorted()` para evidenciar repetições e trocas de variáveis.
-- **Dificuldades:** definir os critérios de desempate e validar as entradas do usuário (números inválidos, nomes repetidos, partida duplicada).
-- **Melhorias possíveis:** salvar os dados em arquivo para não perdê-los ao fechar, permitir editar ou remover uma partida, gerar o calendário automaticamente e incluir jogos de returno.
