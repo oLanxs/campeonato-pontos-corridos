@@ -1,12 +1,3 @@
-
-Parte1 cadastro · PY
-"""
-Gerenciador de Campeonato de Pontos Corridos
-Disciplina: Paradigmas de Programação - UNAMA
-Paradigma: Imperativo
-Etapa 1: cadastro de times
-"""
- 
 PONTOS_VITORIA = 3
 PONTOS_EMPATE = 1
  
