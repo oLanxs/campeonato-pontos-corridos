@@ -63,8 +63,4 @@ comparando os times pela função `criterio()`. A cópia preserva a ordem origin
 
 ## 4. Reflexão sobre o desenvolvimento
 
-Decisões: usei listas de dicionários para guardar os dados de cada time e separei o código em funções pequenas, cada uma com uma tarefa. Implementei o Bubble Sort manualmente em vez de sorted() para evidenciar repetições e trocas de variáveis.
-Dificuldades: definir os critérios de desempate e validar as entradas do usuário.
 
-Melhorias possíveis: salvar os dados em arquivo para não perdê-los ao fechar, permitir editar ou remover uma partida, gerar o calendário automaticamente e incluir jogos de returno.
-Conteúdo
