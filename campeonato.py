@@ -1,90 +1,7 @@
 PONTOS_VITORIA = 3
 PONTOS_EMPATE = 1
  
-# Estado global do programa
-times = []
-partidas = []
- 
- 
-def ler_inteiro(mensagem, minimo=0):
-    """Repete a leitura até o usuário digitar um inteiro >= minimo."""
-    while True:
-        texto = input(mensagem).strip()
-        try:
-            valor = int(texto)
-        except ValueError:
-            print("  Entrada inválida: digite um número inteiro.")
-            continue
-        if valor < minimo:
-            print(f"  O valor deve ser maior ou igual a {minimo}.")
-            continue
-        return valor
- 
- 
-def buscar_time(nome):
-    """Retorna a posição do time na lista (ignorando maiúsculas) ou -1."""
-    for i in range(len(times)):
-        if times[i]["nome"].lower() == nome.lower():
-            return i
-    return -1
- 
- 
-def adicionar_time(nome):
-    """Cria o time com todas as estatísticas zeradas e o adiciona à lista."""
-    time = {
-        "nome": nome,
-        "jogos": 0,
-        "vitorias": 0,
-        "empates": 0,
-        "derrotas": 0,
-        "gols_pro": 0,
-        "gols_contra": 0,
-        "pontos": 0,
-    }
-    times.append(time)
- 
- 
-def cadastrar_time():
-    nome = input("Nome do time: ").strip()
-    if nome == "":
-        print("  O nome não pode ser vazio.")
-    elif buscar_time(nome) != -1:
-        print("  Já existe um time com esse nome.")
-    else:
-        adicionar_time(nome)
-        print(f"  Time '{nome}' cadastrado com sucesso!")
- 
- 
-def exibir_menu():
-    print("\n===== CAMPEONATO DE PONTOS CORRIDOS =====")
-    print("1 - Cadastrar time")
-    print("0 - Sair")
- 
- 
-def main():
-    opcao = -1
-    while opcao != 0:
-        exibir_menu()
-        opcao = ler_inteiro("Escolha uma opção: ")
- 
-        if opcao == 1:
-            cadastrar_time()
-        elif opcao == 0:
-            print("Encerrando o programa. Até logo!")
-        else:
-            print("  Opção inválida.")
- 
- 
-if __name__ == "__main__":
-    main()
- PONTOS_VITORIA = 3
-PONTOS_EMPATE = 1
- 
-# Estado global do programa
-times = []
-partidas = []
- 
- 
+
 def ler_inteiro(mensagem, minimo=0):
     """Repete a leitura até o usuário digitar um inteiro >= minimo."""
     while True:
@@ -116,6 +33,9 @@ def partida_ja_registrada(mandante, visitante):
     return False
  
  
+# ----------------------------------------------------------------------
+# PROCEDIMENTOS QUE ALTERAM O ESTADO
+# ----------------------------------------------------------------------
 def adicionar_time(nome):
     """Cria o time com todas as estatísticas zeradas e o adiciona à lista."""
     time = {
@@ -201,6 +121,9 @@ def registrar_partida(nome_mandante=None, nome_visitante=None,
           f"{gols_v} {times[pos_v]['nome']}")
  
  
+# ----------------------------------------------------------------------
+# ORDENAÇÃO E EXIBIÇÃO
+# ----------------------------------------------------------------------
 def saldo_de_gols(time):
     return time["gols_pro"] - time["gols_contra"]
  
@@ -246,17 +169,47 @@ def exibir_classificacao():
         print(f"\n  Líder: {lider['nome']} com {lider['pontos']} ponto(s).")
  
  
+def exibir_partidas():
+    if len(partidas) == 0:
+        print("  Nenhuma partida registrada.")
+        return
+    numero = 1
+    for p in partidas:
+        print(f"  {numero:>2}. {p['mandante']} {p['gols_m']} x "
+              f"{p['gols_v']} {p['visitante']}")
+        numero += 1
+ 
+ 
+def carregar_exemplo():
+    """Carrega dados de demonstração (útil para o vídeo e para testes)."""
+    if len(times) > 0 or len(partidas) > 0:
+        print("  Já existem dados carregados. Reinicie para usar o exemplo.")
+        return
+    for nome in ["Paysandu", "Remo", "Tuna Luso", "Águia de Marabá"]:
+        adicionar_time(nome)
+    registrar_partida("Paysandu", "Remo", 2, 1)
+    registrar_partida("Remo", "Paysandu", 1, 1)
+    registrar_partida("Tuna Luso", "Águia de Marabá", 0, 0)
+    registrar_partida("Paysandu", "Tuna Luso", 3, 0)
+    registrar_partida("Remo", "Águia de Marabá", 2, 0)
+ 
+ 
+# ----------------------------------------------------------------------
+# PROGRAMA PRINCIPAL
+# ----------------------------------------------------------------------
 def exibir_menu():
     print("\n===== CAMPEONATO DE PONTOS CORRIDOS =====")
     print("1 - Cadastrar time")
     print("2 - Registrar partida")
     print("3 - Ver classificação")
+    print("4 - Ver partidas")
+    print("5 - Carregar dados de exemplo")
     print("0 - Sair")
  
  
 def main():
     opcao = -1
-    while opcao != 0:
+    while opcao != 0:                  # laço principal do programa
         exibir_menu()
         opcao = ler_inteiro("Escolha uma opção: ")
  
@@ -266,6 +219,10 @@ def main():
             registrar_partida()
         elif opcao == 3:
             exibir_classificacao()
+        elif opcao == 4:
+            exibir_partidas()
+        elif opcao == 5:
+            carregar_exemplo()
         elif opcao == 0:
             print("Encerrando o programa. Até logo!")
         else:
@@ -274,5 +231,4 @@ def main():
  
 if __name__ == "__main__":
     main()
-
-
+ 
